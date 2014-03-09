@@ -5,3 +5,4 @@ stl/
 *~
 *.bin
 *.pyc
+/build

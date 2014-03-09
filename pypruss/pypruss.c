@@ -168,10 +168,11 @@ static PyObject *pypruss_wait_for_event(PyObject *self, PyObject *args){
 
 // Clear an event 
 static PyObject *pypruss_clear_event(PyObject *self, PyObject *args){
-	int event; // PRU0_ARM_INTERRUPT or PRU1_ARM_INTERRUPT
-    if (!PyArg_ParseTuple(args, "i", &event))
+	int host_interrupt; 
+	int sysevent; // PRU0_ARM_INTERRUPT or PRU1_ARM_INTERRUPT
+    if (!PyArg_ParseTuple(args, "ii", &host_interrupt, &sysevent))
      	return NULL;
-	prussdrv_pru_clear_event (event); 	// Clear the event 
+	prussdrv_pru_clear_event (host_interrupt, sysevent); 	// Clear the event 
     Py_INCREF(Py_None);
     return Py_None;
 }
